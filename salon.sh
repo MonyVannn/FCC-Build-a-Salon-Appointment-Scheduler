@@ -27,9 +27,10 @@ GET_SERVICES_ID() {
 NEXT() {
   echo -e "\nWhat's your phone number?"
   read CUSTOMER_PHONE
-  # CUSTOMER_PHONE_FORMATED=$(echo $CUSTOMER_PHONE | sed 's/[^0-9]*//g')
+
   NAME=$($PSQL "SELECT name FROM customers WHERE phone='$CUSTOMER_PHONE'")
   CUSTOMER_NAME=$(echo $NAME | sed 's/ //g')
+  
   if [[ -z $NAME ]]
   then
     echo -e "\nI don't have a record for that phone number, what's your name?"
